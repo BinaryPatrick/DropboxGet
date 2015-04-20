@@ -1,4 +1,5 @@
-$htmlContent = file_get_contents('https://www.dropbox.com/sc/rus76cg28j27n12/AAC67nMjz7HXXT_tqzHjTMh6a');
+<?php 
+	$htmlContent = file_get_contents(/* 'Your Link Here' */); // Dropbox photo album share link
 	$i = 0; $j = 0; $k = 0; $linkArr = Array();
 	while (strpos($htmlContent, '<a href="https://www.dropbox', $i)) {
 		$i = strpos($htmlContent, '<a href="https://www.dropbox', $i);
@@ -23,7 +24,6 @@ $htmlContent = file_get_contents('https://www.dropbox.com/sc/rus76cg28j27n12/AAC
 		$j = strpos($htmlContent, '"', ($i + 15));
 		$temp = substr($htmlContent, ($i + 14), ($j - $i) - 14);
 		$uni = true;
-
 		if (!empty($picArr)){
 			foreach ($picArr as $x) {
 				if ($x == $temp)
@@ -39,3 +39,4 @@ $htmlContent = file_get_contents('https://www.dropbox.com/sc/rus76cg28j27n12/AAC
 	for ($i = 0; $i < count($linkArr); $i++) {
 		echo "<div style='float:left; padding:2px;'><a href=".$linkArr[$i]." target='_blank'><img src=".$picArr[$i]."></a></div>";
 	}
+?>
